@@ -3,13 +3,17 @@ import { IResponseAPI } from "./types"
 import axios from 'axios'
 import Input from "../../Atoms/Input"
 import Button from "../../Atoms/Button"
-export default function Form() {
 
+export default function Form() {
   const [responseAPI, setResponseAPI] = useState<IResponseAPI | undefined>(undefined)
   const [valueInput, setValueInput] = useState<string>('')
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setValueInput(e.target.value);
   };
+
+  function clearInput(){
+    setValueInput("")
+  }
 
   function handleSubmit(e){
     e.preventDefault()
@@ -35,17 +39,26 @@ export default function Form() {
     <div>
       { responseAPI && responseAPI[valueInput] ?
       <div>
-        <h1>{responseAPI[valueInput].name}</h1>
-        <p>{responseAPI[valueInput].lore}</p>
-        {
-          responseAPI[valueInput].spells.map((spells, i) => {
-            return <p key={i}>{responseAPI[valueInput].spells[i].name}</p>
-          })
-        }
-        <p>{responseAPI[valueInput].spells[0].name}</p>
+        <div>
+          <h1>Champ: {responseAPI[valueInput].name}</h1>
+          <p>Lore: {responseAPI[valueInput].lore}</p>
+        </div>
+        <div>
+          {
+            responseAPI[valueInput].spells.map((spells, i) => {
+              return (<div key={i}>
+                <p>Spell: {responseAPI[valueInput].spells[i].name}</p>
+                <p>Description: {responseAPI[valueInput].spells[i].description}</p>
+              </div> )
+            })
+          }
+        </div>
+        <div>
+          <p>{responseAPI[valueInput].passive.name}</p>
+          <p>{responseAPI[valueInput].passive.description}</p>
+        </div>
       </div>
        : "" }
     </div>
-
   </>
 }

@@ -7,9 +7,14 @@ export interface IResponseAPI {
     },
     spells: [
       {
-        name: string
+        name: string,
+        description: string,
       }
-    ]
+    ],
+    passive: {
+      name: string,
+      description: string,
+    }
   }
 }
 
