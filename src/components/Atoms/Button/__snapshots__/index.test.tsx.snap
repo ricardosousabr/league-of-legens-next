@@ -2,6 +2,7 @@
 
 exports[`Link renders correctly 1`] = `
 <button
+  onClick={[Function]}
   type="button"
 >
   Click
