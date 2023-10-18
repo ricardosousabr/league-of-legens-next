@@ -1,7 +1,7 @@
+import Form from "@/src/components/Molecules/Form";
+
 export default function Home() {
   return (
-    <>
-      <h1>Hello word</h1>
-    </>
+    <Form />
   );
 }
