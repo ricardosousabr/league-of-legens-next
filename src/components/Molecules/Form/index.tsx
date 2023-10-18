@@ -1,8 +1,9 @@
-import { useState } from "react"
+import { FormEvent, useState } from "react"
 import { IResponseAPI } from "./types"
 import axios from 'axios'
 import Input from "../../Atoms/Input"
 import Button from "../../Atoms/Button"
+import Text from "../../Atoms/Text/Index"
 
 export default function Form() {
   const [responseAPI, setResponseAPI] = useState<IResponseAPI | undefined>(undefined)
@@ -11,11 +12,7 @@ export default function Form() {
     setValueInput(e.target.value);
   };
 
-  function clearInput(){
-    setValueInput("")
-  }
-
-  function handleSubmit(e){
+  function handleSubmit(e: FormEvent<HTMLFormElement>){
     e.preventDefault()
     getData()
   }
@@ -34,28 +31,28 @@ export default function Form() {
   return <>
     <form onSubmit={handleSubmit}>
       <Input type="text" placeholder="Escreva aqui" value={valueInput} onChange={handleChange} />
-      <Button type="button" onClick={handleSubmit}>Click</Button>
+      <Button type="submit">Click</Button>
     </form>
     <div>
       { responseAPI && responseAPI[valueInput] ?
       <div>
         <div>
           <h1>Champ: {responseAPI[valueInput].name}</h1>
-          <p>Lore: {responseAPI[valueInput].lore}</p>
+          <Text fontSize="16px" color="blue">Lore: {responseAPI[valueInput].lore}</Text>
         </div>
         <div>
           {
             responseAPI[valueInput].spells.map((spells, i) => {
               return (<div key={i}>
-                <p>Spell: {responseAPI[valueInput].spells[i].name}</p>
-                <p>Description: {responseAPI[valueInput].spells[i].description}</p>
+                <Text fontSize="16px" color="blue">Spell: {responseAPI[valueInput].spells[i].name}</Text>
+                <Text fontSize="16px" color="blue">Description: {responseAPI[valueInput].spells[i].description}</Text>
               </div> )
             })
           }
         </div>
         <div>
-          <p>{responseAPI[valueInput].passive.name}</p>
-          <p>{responseAPI[valueInput].passive.description}</p>
+          <Text fontSize="16px" color="blue">{responseAPI[valueInput].passive.name}</Text>
+          <Text fontSize="16px" color="blue">{responseAPI[valueInput].passive.description}</Text>
         </div>
       </div>
        : "" }
