@@ -1,8 +1,12 @@
-import React, { ReactNode } from 'react';
+import React from 'react';
 
-export interface InputProps extends IntrinsicElements.input DetailedHTMLProps<InputHTMLAttributes<HTMLInputElement>, HTMLInputElement> {
+export interface InputProps {
   type: string,
   value: string,
   placeholder: string,
-  onChange: function,
+  onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void,
+  borderRadius?: string,
+  background?: string,
+  padding?: string
+  border?: string
 }
