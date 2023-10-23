@@ -2,6 +2,7 @@
 
 exports[`Link renders correctly 1`] = `
 <input
+  className="styles__InputStyle-sc-pk8aov-0 feybKy"
   placeholder="Click aqui"
   type="submit"
   value="Click"
